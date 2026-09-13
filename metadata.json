@@ -1,0 +1,6 @@
+{
+  "name": "100 Recipes",
+  "description": "An expansive culinary collection of 100+ curated recipes with smart search, protein macro calculator & tracker, serving scaler, interactive cooking mode with timers, pantry matcher, and grocery shopping list.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
