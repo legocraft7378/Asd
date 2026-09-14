@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b" />
+      <stop offset="50%" stop-color="#d97706" />
+      <stop offset="100%" stop-color="#b45309" />
+    </linearGradient>
+    <linearGradient id="innerGlow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.3" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+    </linearGradient>
+    <filter id="dropShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#78350f" flood-opacity="0.25" />
+    </filter>
+  </defs>
+
+  <!-- Rounded App Icon Background -->
+  <rect width="512" height="512" rx="112" fill="url(#goldGradient)" />
+  <rect width="512" height="512" rx="112" fill="url(#innerGlow)" />
+
+  <!-- Emblem / Chef Hat Icon -->
+  <g filter="url(#dropShadow)" fill="#ffffff" transform="translate(64, 56) scale(0.75)">
+    <!-- Chef Hat Base Band -->
+    <path d="M120 400 H392 C405 400 416 389 416 376 V344 C416 331 405 320 392 320 H120 C107 320 96 331 96 344 V376 C96 389 107 400 120 400 Z" />
+    
+    <!-- Chef Hat Ribbon Line -->
+    <rect x="120" y="354" width="272" height="12" rx="6" fill="#fef3c7" opacity="0.8" />
+
+    <!-- Hat Puffs -->
+    <!-- Center Main Puff -->
+    <circle cx="256" cy="180" r="96" />
+    <!-- Left Puff -->
+    <circle cx="168" cy="224" r="80" />
+    <!-- Right Puff -->
+    <circle cx="344" cy="224" r="80" />
+    <!-- Bottom Fill connecting puffs to band -->
+    <path d="M128 320 C128 260 160 220 256 220 C352 220 384 260 384 320 Z" />
+
+    <!-- Crossed Golden Utensils Badge in Center -->
+    <g transform="translate(256, 260) scale(0.9)" fill="#d97706">
+      <circle cx="0" cy="0" r="38" fill="#ffffff" />
+      <!-- Small Star or Sparkle -->
+      <path d="M0 -22 L6 -6 L22 0 L6 6 L0 22 L-6 6 L-22 0 L-6 -6 Z" fill="#d97706" />
+    </g>
+  </g>
+</svg>

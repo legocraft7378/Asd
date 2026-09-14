@@ -14,6 +14,7 @@ import {
   ShieldCheck,
   Dumbbell
 } from 'lucide-react';
+import { PWAInstallButton } from './PWAInstallButton';
 
 interface NavbarProps {
   searchQuery: string;
@@ -117,6 +118,9 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           {/* Action Buttons */}
           <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+            {/* In-App PWA Install Prompt */}
+            <PWAInstallButton />
+
             {/* Add / Upload Recipe Primary Button */}
             <button
               id="btn-open-add-recipe"

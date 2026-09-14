@@ -49,6 +49,9 @@ import { AddRecipeModal } from './components/AddRecipeModal';
 import { UserCreationsSection } from './components/UserCreationsSection';
 import { CommunityPollsModal } from './components/CommunityPollsModal';
 import { ProteinCalculatorModal } from './components/ProteinCalculatorModal';
+import { OfflineIndicator } from './components/OfflineIndicator';
+import { AppHeaderBanner } from './components/AppHeaderBanner';
+import { AppInstallModal } from './components/AppInstallModal';
 import { ChefHat, Sparkles, SearchX, RotateCcw, Plus, Upload, Download, Vote, ShieldCheck, Award, Dumbbell } from 'lucide-react';
 
 export function App() {
@@ -70,8 +73,29 @@ export function App() {
   const [isAddRecipeOpen, setIsAddRecipeOpen] = useState(false);
   const [isPollsOpen, setIsPollsOpen] = useState(false);
   const [isProteinCalcOpen, setIsProteinCalcOpen] = useState(false);
+  const [isAppInstallModalOpen, setIsAppInstallModalOpen] = useState(false);
   const [proteinPreselectRecipe, setProteinPreselectRecipe] = useState<Recipe | null>(null);
   const [editingRecipe, setEditingRecipe] = useState<Recipe | null>(null);
+
+  // URL Deep Link / PWA Action Handler
+  useEffect(() => {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const action = params.get('action');
+      if (action === 'protein') {
+        setIsProteinCalcOpen(true);
+      } else if (action === 'grocery') {
+        setIsGroceryOpen(true);
+      } else if (action === 'planner') {
+        setIsMealPlannerOpen(true);
+      } else if (action === 'search') {
+        const searchInput = document.getElementById('navbar-recipe-search') as HTMLInputElement | null;
+        searchInput?.focus();
+      }
+    } catch {
+      // URL params parsing safe guard
+    }
+  }, []);
 
   // Filtering & Search state
   const [searchQuery, setSearchQuery] = useState('');
@@ -617,6 +641,9 @@ export function App() {
 
   return (
     <div className="min-h-screen bg-stone-100/70 text-stone-900 flex flex-col antialiased selection:bg-amber-200 selection:text-amber-900">
+      {/* App Mode Install & Open Banner (appears only in web browser mode) */}
+      <AppHeaderBanner onOpenInstallModal={() => setIsAppInstallModalOpen(true)} />
+
       {/* Sticky Navigation Header */}
       <Navbar
         searchQuery={searchQuery}
@@ -932,6 +959,15 @@ export function App() {
         onRandomizePlan={handleRandomizeMealPlan}
         onClearPlan={handleClearMealPlan}
       />
+
+      {/* Standalone App Mode & Installation Modal */}
+      <AppInstallModal
+        isOpen={isAppInstallModalOpen}
+        onClose={() => setIsAppInstallModalOpen(false)}
+      />
+
+      {/* Offline Status Toast */}
+      <OfflineIndicator />
     </div>
   );
 }
